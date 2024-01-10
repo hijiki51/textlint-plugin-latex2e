@@ -316,6 +316,7 @@ const transform =
               node.location.end.offset
             ),
             type: ASTNodeTypes.Code,
+            value: "",
             children: node.arg === undefined ? [] : transform(text)(node.arg),
           },
         ];
