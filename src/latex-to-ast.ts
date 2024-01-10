@@ -4,7 +4,6 @@
  * This file is part of textlint-plugin-latex2e.
  * This software is released under the MIT License, see LICENSE.md .
  */
-// @ts-nocheck
 import { latexParser } from "latex-utensils";
 import {
   ASTNodeTypes,
@@ -525,7 +524,11 @@ const transform =
 const transformListItems =
   (text: string) =>
   (node: latexParser.Node): (TxtTextNode | TxtNode)[] => {
-    if (node.kind === "math.character" || node.kind === "parbreak") {
+    if (
+      node.kind === "math.character" ||
+      node.kind === "parbreak" ||
+      node.location === undefined
+    ) {
       return [];
     }
     const isItemCommand = node.kind === "command" && node.name === "item";
@@ -551,7 +554,7 @@ const transformListItems =
   };
 
 export const parse = (text: string): TxtParentNode => {
-  const parserOpt = {
+  const parserOpt: latexParser.ParserOptions = {
     startRule: "Root",
     enableComment: true,
     tracer: undefined,
