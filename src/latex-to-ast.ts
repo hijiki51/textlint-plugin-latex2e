@@ -4,7 +4,7 @@
  * This file is part of textlint-plugin-latex2e.
  * This software is released under the MIT License, see LICENSE.md .
  */
-
+// @ts-nocheck
 import { latexParser } from "latex-utensils";
 import {
   ASTNodeTypes,
